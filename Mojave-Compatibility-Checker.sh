@@ -34,7 +34,7 @@
 # requirements have been met to deploy macOS Mojave.
 # 
 # General Requirements:
-# 	- OS X 10.7.5 or later
+# 	- OS X 10.8.0 or later
 # 	- 4GB of memory (Apple says 2GB for 10.14, I prefer having a minimum of 4GB)
 # 	- 15GB of available storage (Apple says 8.8GB for 10.12, I prefer more space)
 # 
@@ -50,14 +50,16 @@
 # 	- MacBook Air (Mid 2012 or newer), ie MacBookAir5,1
 # 	- Mac mini (Late 2012 or newer), ie Macmini6,1
 # 	- iMac (Late 2012 or newer), ie iMac13,1
+# 	- iMac Pro, ie iMacPro1,1
 # 	- Mac Pro (Late 2013 or newer), ie MacPro6,1
-#   - Mac Pro (Mid 2010 or Mid 2012 with a Metal Compatible GPU), ie MacPro5,1
+#   	- Mac Pro (Mid 2010 or Mid 2012 with a Metal Compatible GPU), ie MacPro5,1
 #
 # Default compatibility is set to False if no test pass (variable COMPATIBILITY)
 #
 # Written by: Laurent Pertois | Senior Professional Services Engineer | Jamf
 #
 # Created On: 2017-09-18
+# Modified On: 2018-12-19 (minor changes reported by @sdpalmer)
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -83,7 +85,7 @@ OSVERSIONMAJOR=$(sw_vers -productVersion | awk -F"." '{ print $2 }')
 OSVERSIONMINOR=$(sw_vers -productVersion | awk -F"." '{ print $3 }')
 
 # Checks if computer meets pre-requisites for Mojave
-if [[ "$OSVERSIONMAJOR" -ge 8 && "$OSVERSIONMAJOR" -lt 14 || "$OSVERSIONMAJOR" -eq 7 && "OSVERSIONMINOR" -eq 5 ]]; then
+if [[ "$OSVERSIONMAJOR" -ge 8 && "$OSVERSIONMAJOR" -le 14 || "$OSVERSIONMAJOR" -eq 8 && "OSVERSIONMINOR" -eq 0 ]]; then
 	
 	# Transform GB into Bytes
 	GIGABYTES=$((1024 * 1024 * 1024))
@@ -110,6 +112,8 @@ if [[ "$OSVERSIONMAJOR" -ge 8 && "$OSVERSIONMAJOR" -lt 14 || "$OSVERSIONMAJOR" -
 	
 	# Checks if computer meets pre-requisites for High Sierra
 	if [[ "$MODELNAME" == "iMac" && "$MODELVERSION" -ge 13 && "$MEMORYINSTALLED" -ge "$MINIMUMRAM" && "$FREESPACE" -ge "$MINIMUMSPACE" ]]; then
+		COMPATIBILITY="True"
+	elif [[ "$MODELNAME" == "iMacPro" && "$MODELVERSION" -ge 1 && "$MEMORYINSTALLED" -ge "$MINIMUMRAM" && "$FREESPACE" -ge "$MINIMUMSPACE" ]]; then
 		COMPATIBILITY="True"
 	elif [[ "$MODELNAME" == "Macmini" && "$MODELVERSION" -ge 6 && "$MEMORYINSTALLED" -ge "$MINIMUMRAM" && "$FREESPACE" -ge "$MINIMUMSPACE" ]]; then
 		COMPATIBILITY="True"
