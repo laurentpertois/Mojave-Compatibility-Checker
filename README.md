@@ -3,7 +3,7 @@
 This script was designed to be used as an Extension Attribute on Jamf Pro server to ensure specific requirements have been met to deploy macOS Mojave. With little modification it can probably be used on other systems (Jamf Pro server requires the output of an Extension Attribute to be `echo "<result>$FOO</result>`).
 
 ## General Requirements:
-  - OS X 10.7.5 or later
+  - OS X 10.8.0 or later
   - 4GB of memory (Apple says 2GB for 10.14, I prefer having a minimum of 4GB)
   - 15GB of available storage (Apple says 8.8GB for 10.14, I prefer more space)
 
@@ -18,6 +18,7 @@ These last 2 requirements can be modified in the first 2 variables (`MINIMUMRAM`
 	- MacBook Air (Mid 2012 or newer), ie MacBookAir5,1
 	- Mac mini (Late 2012 or newer), ie Macmini6,1
 	- iMac (Late 2012 or newer), ie iMac13,1
+	- iMac Pro, ie iMacPro1,1
 	- Mac Pro (Late 2013 or newer), ie MacPro6,1
 	- Mac Pro (Mid 2010 or Mid 2012 with a Metal Compatible GPU), ie MacPro5,1
 
